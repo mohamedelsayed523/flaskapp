@@ -1,0 +1,23 @@
+name: python application
+
+
+on:
+
+  push:
+   branches: [ mastaer ]
+  pull_request:
+   branches: [ mastaer ]
+
+  jops:
+    build:
+      runs-on: ubuntu -latest
+
+      steps:
+      - uses: actions/checkout@v1
+      - name: build & push image
+        run: |
+
+          echo "${{secrets.DOCKERPW}}" | docker login -u "webmagic1" --pasword-stdin
+
+         docker image build -t mohamedelsayed289/python-docker:v8 .
+         docker bush mohamedelsayed289/python-docker:v8
